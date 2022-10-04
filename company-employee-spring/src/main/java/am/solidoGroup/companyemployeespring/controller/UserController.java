@@ -27,6 +27,10 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @GetMapping("/user")
+    public String userPage(){
+        return "/user";
+    }
     @GetMapping("/users")
     public String getUsers(ModelMap modelMap) {
         List<User> allUsers = userRepository.findAll();
@@ -55,7 +59,7 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
         }
-        return "redirect:/users";
+        return "redirect:/loginPage";
     }
 
     @GetMapping(value = "/users/getImage",  produces = MediaType.IMAGE_JPEG_VALUE)

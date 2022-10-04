@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<body>
+<th:block th:fragment="headerImport"><!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+
+    <!-- popper js -->
+    <script src="/js/popper.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- core.min.js -->
+    <script src="/js/core.min.js"></script>
+
+    <!-- search -->
+    <script src="/search/search.js"></script>
+
+    <!-- custom scripts -->
+    <script src="/js/main.js"></script>
+
+    <!-- form plugins js -->
+    <script src="/quform/js/plugins.js"></script>
+
+    <!-- form scripts /js -->
+    <script src="/quform/js/scripts.js"></script></th:block>
+<th:block th:fragment="header"> <!-- favicon -->
+    <link rel="shortcut icon" href="/img/logos/favicon.png" />
+    <link rel="apple-touch-icon" href="/img/logos/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/logos/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/logos/apple-touch-icon-114x114.png" />
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="/css/plugins.css" />
+
+    <!-- search css -->
+    <link rel="stylesheet" href="/search/search.css" />
+
+    <!-- quform css -->
+    <link rel="stylesheet" href="/quform/css/base.css">
+
+    <!-- core style css -->
+    <link href="/css/styles.css" rel="stylesheet" /></th:block>
+<th:block th:fragment="footerImport"><footer>
+    <div class="container">
+        <div class="row mt-n2-6">
+            <div class="col-sm-6 col-xl-4 mt-2-6">
+                <h3 class="h5 mb-1-6 text-white">Contact Us</h3>
+                <p class="mb-1-6 text-white opacity9">Advertise your jobs to hundreds of thousands of monthly customers and seek 15.8 million CV in our database.</p>
+                <ul class="contact-list">
+                    <li class="d-flex"><span class="fa fa-home pe-3 text-white"></span><a href="#!">66 Guild Street 512B, Great North Town.</a></li>
+                    <li class="d-flex"><span class="fa fa-phone-alt pe-3 text-white"></span><a href="#!">(+44) 123 456 789</a></li>
+                    <li class="d-flex"><span class="fa fa-envelope pe-3 text-white"></span><a href="#!">info@example.com</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-bar borders-top border-color-light-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3">
+                    <ul class="footer-social-style1">
+                        <li>
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12 text-center">
+                    <p class="d-inline-block text-white mb-0">&copy; <span class="current-year"></span> Web Powered by
+                        <a href="https://www.chitrakootweb.com/" target="_blank" class="text-primary white-hover">StarGroup</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer></th:block>
+<th:block th:fragment="panel"> <div class="container-fluid px-lg-1-6 px-xl-2-5 px-xxl-2-9">
+    <div class="row align-items-center">
+        <div class="col-12 col-lg-12">
+            <div class="menu_area alt-font">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <div class="navbar-header navbar-header-custom">
+                        <!-- start logo -->
+                        <a href="/" class="navbar-brand"><img id="logo" src="/img/logos/logo-white.png" alt="logo"></a>
+                        <!-- end logo -->
+                       <span th:if="${currentUser != null && currentUser.getRole.name == 'ADMIN'}" style="color: white">Admin panel</span>
+                        <span th:if="${currentUser != null && currentUser.getRole.name == 'USER'}" style="color: white">User panel</span>
+                        <span th:if="${currentUser == null}" style="color: white">Please login or register</span>
+
+                    </div>
+
+                    <div class="navbar-toggler bg-secondary"></div>
+
+                    <ul class="navbar-nav ms-auto" id="nav" style="display: none;">
+
+                        <li th:if="${currentUser == null}"><a href="/loginPage">Login</a>
+
+                        </li>
+                        <li th:if="${currentUser != null}"><a href="/logout">Logout</a>
+
+                        </li>
+
+                        <li><a href="#!">Company</a>
+                            <ul>
+                                <li><a href="/companies">All Companies</a></li>
+                                <li th:if="${currentUser != null}"><a href="/companies/add">New Company</a></li>
+                            </ul>
+                        </li>
+                        <li th:if="${currentUser != null}"><a href="#!">Employees</a>
+                            <ul >
+                                <li th:if="${currentUser != null}"><a href="/employees">All Employees</a></li>
+                                <li th:if="${currentUser != null && currentUser.getRole.name == 'ADMIN'}"><a href="/employees/add">New Employee</a></li>
+                            </ul>
+                        </li>
+                        <li th:if="${currentUser == null || currentUser.getRole.name == 'ADMIN'}"><a href="#!">Users</a>
+                            <ul>
+                                <li th:if="${currentUser != null && currentUser.getRole.name == 'ADMIN'}"><a href="/users">All Users</a></li>
+                                <li ><a href="/users/add">New User</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div></th:block>
+</body>
+</html>

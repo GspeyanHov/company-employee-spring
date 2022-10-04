@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Job Portal HTML Template" />
+    <meta name="description" content="Job Board - Job Portal HTML Template" />
+
+    <!-- title  -->
+    <title>New Employee page</title>
+
+    <th:block th:insert="/fragments/fragment::header"></th:block>
+</head>
+<body>
+<!-- PAGE LOADING
+================================================== -->
+<div id="preloader"></div>
+<!-- MAIN WRAPPER
+================================================== -->
+<div class="main-wrapper">
+    <!-- HEADER
+    ================================================== -->
+    <header class="header-style1 menu_area-light">
+        <div class="navbar-default border-bottom border-color-light-white">
+            <!-- start top search -->
+            <div class="top-search bg-secondary">
+                <div class="container-fluid px-sm-1-6 px-lg-2-9">
+                    <form class="search-form" action="search.html" method="GET" accept-charset="utf-8">
+                        <div class="input-group">
+                                <span class="input-group-addon cursor-pointer">
+                                    <button class="search-form_submit fas fa-search text-white" type="submit"></button>
+                                </span>
+                            <input type="text" class="search-form_input form-control" name="s" autocomplete="off" placeholder="Type & hit enter...">
+                            <span class="input-group-addon close-search mt-1"><i class="fas fa-times"></i></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <th:block th:insert="/fragments/fragment::panel"></th:block>
+        </div>
+
+    </header>
+    <!-- BANNER
+    ================================================== -->
+    <section class="top-position1 bg-img pt-13 pb-6 pb-md-20" data-overlay-dark="7" data-background="img/banner/banner-05.jpg">
+
+        <div class="container pb-sm-6 pb-md-8 pb-lg-12">
+            <div>
+                <div class="col-xl-9 col-xxl-7 mb-1-9 mb-lg-0">
+                    <div class="banner-4-form mb-2-9">
+                        <form action="#!">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Job title, Keyword" aria-label="Job title, Keyword" aria-describedby="button-addon2">
+                                <button class="butn" type="button" id="button-addon2">Find Job</button>
+                            </div>
+                        </form>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title" style="color: green">Add new employee</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <form action="/employees/add" method="post" id="employee" enctype="multipart/form-data">
+                                                        <div class="form-group row" style="background-color: gray">
+                                                            <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="text" name="name" class="form-control" id="name" placeholder="Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row" style="background-color: gray">
+                                                            <label for="surname" class="col-sm-2 col-form-label">Surname</label>
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="text" name="surname" class="form-control" id="surname" placeholder="Surname">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row" style="background-color: gray">
+                                                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="email" name="email" class="form-control" id="email" placeholder="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row" style="background-color: gray">
+                                                            <label for="phoneNumber" class="col-sm-2 col-form-label">PhoneNumber</label>
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="text" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="PhoneNumber">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row" style="background-color: gray">
+                                                            <label for="salary" class="col-sm-2 col-form-label">Salary</label>
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="number" name="salary" class="form-control" id="salary" placeholder="salary">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="position" class="col-sm-2 col-form-label">Position</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="custom-select" name="position" id="position">
+                                                                    <option value="PRINCIPAL">Principal</option>
+                                                                    <option value="MANAGER">Manager</option>
+                                                                    <option value="WORKER">Worker</option>
+                                                                    <option value="ACCOUNTANT">Accountant</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                            <div class="form-group row">
+                                                                <label for="company_id" class="col-sm-2 col-form-label">Company</label>
+                                                                <div class="col-sm-10">
+                                                                    <select class="custom-select" name="company" id="company_id">
+                                                                        <option th:each="company : ${allCompanies}" th:value="${company.id}" th:text="${company.name}"></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        <div class="form-group row" style="background-color: gray">
+                                                            <label for="userImage" class="col-sm-2 col-form-label">User image</label>
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="file" name="userImage" id="userImage">
+                                                            </div>
+                                                        </div>
+                                                          <div class="form-group row" style="background-color: gray">
+<!--                                                            <label for="userImage" class="col-sm-2 col-form-label">User image</label>-->
+                                                            <div class="col-sm-10">
+                                                                <input style="background-color: white" type="hidden" name="user" id="userId">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10">
+                                                                <a href="/employees">
+                                                                    <button  type="submit" class="btn btn-primary">Add </button>
+                                                                    <button type="reset" class="btn btn-outline-warning">Reset</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER
+    ================================================== -->
+    <th:block th:insert="/fragments/fragment::footerImport"></th:block>
+
+</div>
+<!-- BUY TEMPLATE
+================================================== -->
+
+<th:block th:insert="/fragments/fragment::headerImport"></th:block>
+
+<!-- all /js include end -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
