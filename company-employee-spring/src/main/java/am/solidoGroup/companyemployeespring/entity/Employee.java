@@ -25,7 +25,14 @@ public class Employee {
     private double salary;
     @Enumerated(value = EnumType.STRING)
     private Position position;
+    @Column(name = "profile_pic")
     private String profilePic;
-    @OneToOne
+    @ManyToOne
     private Company company;
+    @ManyToOne
+    private User user;
+
+
+
+
 }

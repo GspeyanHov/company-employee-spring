@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <!-- metas -->
+    <meta charset="utf-8">
+    <meta name="author" content="Chitrakoot Web"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Job Portal HTML Template"/>
+    <meta name="description" content="Job Board - Job Portal HTML Template"/>
+
+    <!-- title  -->
+    <title>Users page</title>
+
+    <th:block th:insert="/fragments/fragment::header"></th:block>
+</head>
+<body>
+<!-- PAGE LOADING
+================================================== -->
+<div id="preloader"></div>
+<!-- MAIN WRAPPER
+================================================== -->
+<div class="main-wrapper">
+    <!-- HEADER
+    ================================================== -->
+    <header class="header-style1 menu_area-light">
+        <div class="navbar-default border-bottom border-color-light-white">
+            <!-- start top search -->
+            <div class="top-search bg-secondary">
+                <div class="container-fluid px-sm-1-6 px-lg-2-9">
+                    <form class="search-form" action="search.html" method="GET" accept-charset="utf-8">
+                        <div class="input-group">
+                                <span class="input-group-addon cursor-pointer">
+                                    <button class="search-form_submit fas fa-search text-white" type="submit"></button>
+                                </span>
+                            <input type="text" class="search-form_input form-control" name="s" autocomplete="off"
+                                   placeholder="Type & hit enter...">
+                            <span class="input-group-addon close-search mt-1"><i class="fas fa-times"></i></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end top search -->
+            <th:block th:insert="/fragments/fragment::panel"></th:block>
+        </div>
+    </header>
+    <!-- BANNER
+    ================================================== -->
+    <section class="top-position1 bg-img pt-13 pb-6 pb-md-20" data-overlay-dark="7"
+             data-background="img/banner/banner-08.jpg">
+
+        <div class="container pb-sm-6 pb-md-8 pb-lg-12">
+            <div>
+                <div class="col-xl-9 col-xxl-7 mb-1-9 mb-lg-0">
+                    <div class="banner-4-form mb-2-9">
+                        <form action="#!">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Job title, Keyword"
+                                       aria-label="Job title, Keyword" aria-describedby="button-addon2">
+                                <button class="butn" type="button" id="button-addon2">Find Job</button>
+                            </div>
+                        </form>
+                        <div class="inner-title">
+                            <h2 class="h5">Users table</h2>
+                        </div>
+
+                        <table class="table" style="color: white">
+                            <tr>
+                                <th>Image</th>
+                                <th>id</th>
+                                <th>role</th>
+                                <th>name</th>
+                                <th>surname</th>
+                                <th>email</th>
+                                <th>password</th>
+
+
+                            </tr>
+                            <tr th:each="user : ${users}">
+                                <td>
+                                    <img th:if="${user.pictUrl != null}"
+                                         th:src="@{/users/getImage(fileName = ${user.getPictUrl()})}">
+                                    <img th:if="${user.pictUrl eq null}" src="/img/avatar/avatar-03.jpg">
+                                </td>
+                                <td th:text="${user.id}"></td>
+                                <td th:text="${user.role.name()}"></td>
+                                <td th:text="${user.name}"></td>
+                                <td th:text="${user.surname}"></td>
+                                <td th:text="${user.email}"></td>
+                                <td th:text="${user.password}"></td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER
+    ================================================== -->
+    <th:block th:insert="/fragments/fragment::footerImport"></th:block>
+
+</div>
+<!-- BUY TEMPLATE
+================================================== -->
+
+<th:block th:insert="/fragments/fragment::headerImport"></th:block>
+
+<!-- all /js include end -->
+</body>
+</html>
+
+
+
+
+
