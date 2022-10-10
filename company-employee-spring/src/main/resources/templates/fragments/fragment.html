@@ -94,7 +94,8 @@
                         <!-- start logo -->
                         <a href="/" class="navbar-brand"><img id="logo" src="/img/logos/logo-white.png" alt="logo"></a>
                         <!-- end logo -->
-                       <span th:if="${currentUser != null && currentUser.getRole.name == 'ADMIN'}" style="color: white">Admin panel</span>
+                       <span th:if="${currentUser != null && currentUser.getRole.name == 'ADMIN'}" style="color: white"
+                             th:text="#{menu.admin.panel}"> Admin panel</span>
                         <span th:if="${currentUser != null && currentUser.getRole.name == 'USER'}" style="color: white">User panel</span>
                         <span th:if="${currentUser == null}" style="color: white">Please login or register</span>
 

@@ -105,6 +105,12 @@
                                 </td>
                             </tr>
                         </table>
+                        <div th:if="${employees.totalPages > 0}" class="pagination"
+                             th:each="pageNumber : ${pageNumbers}">
+                            <a th:href="@{/employees(size=${employees.size}, page=${pageNumber})}"
+                               th:text="${pageNumber}"
+                               th:class="${pageNumber==employees.number + 1} ? active"></a>
+                        </div>
                     </div>
                 </div>
             </div>
