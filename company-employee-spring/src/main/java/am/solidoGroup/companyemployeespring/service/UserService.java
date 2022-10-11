@@ -21,6 +21,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
     @Value("${company.employee.management.imageFolder}")
     private String picFolder;
     public List<User> findAll() {
@@ -36,6 +37,8 @@ public class UserService {
             }
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
+            mailService.sendEmail(user.getEmail(), "Welcome","Dear" + " " + user.getName()
+            + "\n" + "you have successfully registered !!!");
         }
     }
     public byte[] getImage(String fileName) throws IOException {
